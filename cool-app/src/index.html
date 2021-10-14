@@ -6,22 +6,22 @@
     <link rel="stylesheet" href="index.css">
   </head>
   <body>
-    <h1>Hello World 💖</h1>
+    <!-- <h1>Hello World 💖</h1> -->
     <!-- <p>Welcome to your Electron application.</p> -->
     <a target="_blank" href="register.html">Register</a>
-    <form action="action_page.php" class="form-container">
+    <form action="./login.html" class="form-container" target="_blank">
 
       <div class="container">
 
-        <h1>Log-In</h1>
+        <h1>Register</h1>
 
         <hr>
 
-        <label for="email"><b>Email</b></label>
+        <label for="username"><b>Username</b></label>
 
-        <input type="text" placeholder="Enter Email" name="email" required>
+        <input type="text" placeholder="Enter name" name="name" required>
 
-        <label for="psw"><b>Password</b></label>
+        <label for="password"><b>Password</b></label>
 
         <input type="password" placeholder="Enter Password" name="psw" required>
 
@@ -39,7 +39,7 @@
 
           <button type="button" class="cancelbtn">Cancel</button>
           
-          <button type="submit" class="signupbtn">Register</button>
+          <button type="submit" class="signupbtn">LogIn</button>
 
         </div>
 
@@ -47,9 +47,8 @@
 
     </form>
 
-
   </body>
-  <!-- <script>
-    require('./renderer.js')
-  </script> -->
+  <script>
+    require('./index.js')
+  </script>
 </html>
