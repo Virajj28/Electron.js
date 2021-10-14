@@ -13,6 +13,10 @@ form {
 
 }
 
+.form-container {
+  border:1px solid #ccc
+}
+
 
 
 /* Full-width inputs */
