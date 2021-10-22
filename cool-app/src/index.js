@@ -53,5 +53,23 @@ app.on('activate', () => {
 // code. You can also put them in separate files and import them here.
 app.on('login', (event, webContents,details, authInfo, callback) => {
   event.preventDefault();
-  callback('email', 'password');
+  createAuthPrompt().then(credentials => {
+    callback(credentials.username, credentials.password);
+  });
+
+  function createAuthPrompt() {
+    const authPromptWin = new BrowserWindow();
+    authPromptWin.loadFile(path.join(__dirname, 'register.html'));
+
+    return new Promise((resolve, reject) => {
+      authPromptWin.webContents.on('did-get-redirect-request', (event, oldUrl, newUrl) => {
+        if (newUrl.startsWith('http://localhost:3000/auth-callback')) {
+          const query = newUrl.substr('http://localhost:3000/auth-callback'.length);
+          const credentials = querystring.parse(query);
+          authPromptWin.close();
+          resolve(credentials);
+        }
+      });
+    });
+  }
 });
