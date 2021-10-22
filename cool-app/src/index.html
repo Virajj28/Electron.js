@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <div class="container">
+    <div class="text-right">
       <a href="login.html" class="ml-1">Login</a>
       <a href="home.html" class="ml-1">OrgSignIn</a>
       <a href="workspace.html" class="ml-1">Workspace</a>
@@ -79,12 +79,15 @@
         <h1 class="text-3xl font-bold">First,enter your email</h1>
         <p class="text">We suggest using the email address you use at work.</p>
 
-        <form action="home.html" class="my-4">
+        <form method="post" id="register" class="my-4">
           <div class="rounded-md shadow-sm ">
             <div>
-              <input id="email" name="email type="email" autocomplete="email" required class="relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none sm:text-sm" placeholder="name@work-email.com">
+              <input id="email" name="email" type="text" required class="relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none sm:text-sm" placeholder="name@work-email.com">
             </div>
-            <button class="text-white bg-purple-900 w-full mt-6 p-2 font-semibold">
+            <div>
+              <input id="password" name="password" type="password" required class="relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none sm:text-sm" placeholder="Enter password">
+            </div>
+            <button id="btnSignin" type="submit" class="text-white bg-purple-900 w-full mt-6 p-2 font-semibold">
               Continue
             </button>
           </div>
@@ -110,7 +113,7 @@
     </div>
 
   </body>
-  <script>
+  <!-- <script>
     require('./index.js')
-  </script>
+  </script> -->
 </html>

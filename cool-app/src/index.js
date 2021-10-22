@@ -31,6 +31,38 @@ const createWindow = () => {
 // Some APIs can only be used after this event occurs.
 app.on('ready', createWindow);
 
+// Register to the app
+const askregister = document.querySelector('#btnSignin');
+
+// Handle the register event
+askregister.addEventListener('click', () => {
+  const response = await fetch('http://localhost:3000/api/user/register', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      "Accept": "application/json"
+    },
+    body: JSON.stringify({
+      email: document.querySelector('#email').value
+    })
+  });
+  const data = await response.json();
+  console.log(data);
+
+  // const request = net.request({
+  //   method: 'POST',
+  //   url: 'http://localhost:3000/api/user/register',
+  //   headers: {
+  //     'Content-Type': 'application/json',
+  //     "Accept": "application/json"
+  //   },
+  //   body: JSON.stringify({
+  //     email: document.querySelector('#email').value
+  //   })
+});
+
+
+
 // Quit when all windows are closed, except on macOS. There, it's common
 // for applications and their menu bar to stay active until the user quits
 // explicitly with Cmd + Q.
@@ -52,5 +84,5 @@ app.on('activate', () => {
 // code. You can also put them in separate files and import them here.
 app.on('login', (event, webContents,details, authInfo, callback) => {
   event.preventDefault();
-  callback('username', 'password');
+  callback('email', 'password');
 });
