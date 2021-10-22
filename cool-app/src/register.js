@@ -1,5 +1,15 @@
+const { app, BrowserWindow, webContents } = require('electron');
+const path = require('path');
 const axios = require('axios');
 
+app.on('ready', () => {
+  mainWindow = new BrowserWindow({
+      webPreferences: {
+          nodeIntegration: true,
+          contextIsolation: false,
+      }
+  });
+});
 
 //  Register to the app 
 const register = document.getElementById("btnRegister");
@@ -21,3 +31,4 @@ register.addEventListener('click', () => {
     console.log(error);
   });
 });
+
