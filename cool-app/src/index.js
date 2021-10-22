@@ -1,6 +1,7 @@
 const { app, BrowserWindow, webContents } = require('electron');
 const path = require('path');
-const net = require('net');
+const axios = require('axios');
+
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require('electron-squirrel-startup')) { // eslint-disable-line global-require
   app.quit();
@@ -32,38 +33,26 @@ const createWindow = () => {
 app.on('ready', createWindow);
 
 // Register to the app
-const askregister = document.querySelector('#btnRegister');
+const register = document.getElementById('btnRegister');
 
-// Handle the register event
-askregister.addEventListener('click', () => {
-  // const response = await fetch('http://localhost:3000/api/user/register', {
-  //   method: 'POST',
-  //   headers: {
-  //     'Content-Type': 'application/json',
-  //     "Accept": "application/json"
-  //   },
-  //   body: JSON.stringify({
-  //     email: document.querySelector('#email').value
-  //   })
-  // });
-  // const data = await response.json();
-  // console.log(data);
+const getEmail = document.getElementById('email');
+const password = document.getElementById('password');
 
-  const request = net.request({
-    method: 'POST',
-    url: 'http://localhost:3000/api/user/register',
-    path: '/api/user/register',
-    redirect: 'follow',
-    headers: {
-      'Content-Type': 'application/json',
-      "Accept": "application/json"
-    },
-    body: JSON.stringify({
-      email: document.querySelector('#email').value,
-      password: document.querySelector('#password').value
-    })
+register.addEventListener('click', () => {
+  const email = getEmail.value;
+  const pass = password.value;
+  axios.post('http://localhost:3000/api/user/register', {
+    email: email,
+    password: pass
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
   });
 });
+
 
 
 
